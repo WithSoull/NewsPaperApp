@@ -24,7 +24,9 @@ SECRET_KEY = "django-insecure-eds&(wzzw92l=s(-kg0426x*u#x-pv^=^p&kn2%00ii!e^6239
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    's01ds0u11.pythonanywhere.com',
+]
 
 # Application definition
 
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     # Libs
     "crispy_forms",
     "crispy_bootstrap5",
+    "whitenoise.runserver_nostatic",
 ]
 
 MIDDLEWARE = [
@@ -51,6 +54,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -131,3 +135,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
